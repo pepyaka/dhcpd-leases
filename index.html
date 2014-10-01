@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Leases</title>
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.17.8/css/theme.bootstrap.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.17.8/addons/pager/jquery.tablesorter.pager.css">
+
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.17.8/js/jquery.tablesorter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.17.8/js/jquery.tablesorter.widgets.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.17.8/addons/pager/jquery.tablesorter.pager.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/jquery.spin.min.js"></script>
+    <script src="js/dhcpd-leases.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-2">
+                <h4>DHCPD leases</h4>
+            </div>
+            <div class="col-lg-2">
+                <button id="reset-button" type="button" class="btn btn-default btn-block reset">
+                    Reset filter
+                </button>
+            </div>
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3">
+                <div class="btn-group btn-group-justified" data-toggle="buttons">
+                    <label class="btn btn-primary" disabled>
+                        <input type="checkbox" id="actualLeases"> Actual leases
+                    </label>
+                    <label class="btn btn-primary active" disabled>
+                        <input type="checkbox" id="emptyHostname" checked> Empty hostname
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <button id="refresh-button" type="button" class="btn btn-info btn-block">
+                    <i class="glyphicon glyphicon-refresh"></i> Refresh
+                </button>
+            </div>
+        </div>
+    </div><!-- /header -->
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th abbr="ip">ip</th>
+                <th abbr="starts">Start</th>
+                <th abbr="ends">End</th>
+                <th abbr="cltt">Last transaction</th>
+                <th abbr="hardware">MAC address</th>
+                <th abbr="client-hostname">Hostname</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>ip</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Last transaction</th>
+                <th>MAC address</th>
+                <th>Hostname</th>
+            </tr>
+            <tr>
+                <th colspan="7" class="ts-pager form-horizontal">
+                    <button type="button" class="btn first"><i class="icon-step-backward glyphicon glyphicon-step-backward"></i></button>
+                    <button type="button" class="btn prev"><i class="icon-arrow-left glyphicon glyphicon-backward"></i></button>
+                    <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
+                    <button type="button" class="btn next"><i class="icon-arrow-right glyphicon glyphicon-forward"></i></button>
+                    <button type="button" class="btn last"><i class="icon-step-forward glyphicon glyphicon-step-forward"></i></button>
+                    <select class="pagesize input-mini" title="Select page size">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                    <select class="pagenum input-mini" title="Select page number"></select>
+                </th>
+            </tr>
+        </tfoot>
+        <tbody>
+        </tbody>
+    </table>
+    <div id="spin"></div>
+</div> <!-- /container -->
+</body>
+</html>
